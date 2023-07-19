@@ -6,7 +6,6 @@ Original file is located at
 
 **# Step 1: Import the necessary libraries**
 
-
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
