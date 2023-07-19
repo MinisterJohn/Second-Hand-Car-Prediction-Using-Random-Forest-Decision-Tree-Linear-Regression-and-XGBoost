@@ -6,15 +6,15 @@ Original file is located at
 
 **# Step 1: Import the necessary libraries**
 
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.neural_network import MLPRegressor
-from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import StandardScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+1. import pandas as pd
+2. import numpy as np
+3. from sklearn.model_selection import train_test_split
+4. from sklearn.ensemble import RandomForestRegressor
+5. from sklearn.neural_network import MLPRegressor
+6. from sklearn.metrics import mean_squared_error
+7. from sklearn.preprocessing import StandardScaler
+8. from tensorflow.keras.models import Sequential
+9. from tensorflow.keras.layers import Dense
 
 **# Step 2: Load and preprocess the dataset**
 df = pd.read_csv("/content/train-data.csv")
