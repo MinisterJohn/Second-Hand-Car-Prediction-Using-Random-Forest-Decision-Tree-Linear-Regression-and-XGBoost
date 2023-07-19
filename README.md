@@ -17,8 +17,8 @@ Original file is located at
 9. from tensorflow.keras.layers import Dense
 
 **Step 2: Load and preprocess the dataset**
-df = pd.read_csv("/content/train-data.csv")
-df.head()
+1. df = pd.read_csv("/content/train-data.csv")
+2. df.head()
 
 
 **Step 3: Select the columns that you need**
@@ -28,19 +28,19 @@ selected_features = ['Year', 'Kilometers_Driven',  'Transmission', 'Owner_Type',
 
 
 **Create a mapping dictionary to replace categorical values with numerical values**
-Transmission = {'Manual': 0, 'Automatic': 1}
+1. Transmission = {'Manual': 0, 'Automatic': 1}
 
 **Replace the values in the 'Tranmission' column with the numerical representation**
-df['Transmission'] = df['Transmission'].replace(Transmission)
+1. df['Transmission'] = df['Transmission'].replace(Transmission)
 
 **Create a mapping dictionary to replace categorical values with numerical values**
-Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
+1. Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
 
 **Replace the values in the 'Tranmission' column with the numerical representation**
-df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
+1. df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
 
-#Create a dataframe with the selected columns
-new_dataset = df[selected_features]
+**Create a dataframe with the selected columns**
+1. new_dataset = df[selected_features]
 
 new_dataset
 
