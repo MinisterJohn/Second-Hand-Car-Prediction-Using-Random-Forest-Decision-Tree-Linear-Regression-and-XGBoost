@@ -4,7 +4,7 @@ This model will be able to predict the price of second hand cars.
 Original file is located at
     https://colab.research.google.com/drive/143O1wwGBTCErjzlsx86dlqiKLD3vxoE_
 
-**# Step 1: Import the necessary libraries**
+**Step 1: Import the necessary libraries**
 
 1. import pandas as pd
 2. import numpy as np
@@ -16,28 +16,27 @@ Original file is located at
 8. from tensorflow.keras.models import Sequential
 9. from tensorflow.keras.layers import Dense
 
-**# Step 2: Load and preprocess the dataset**
+**Step 2: Load and preprocess the dataset**
 df = pd.read_csv("/content/train-data.csv")
 df.head()
 
 
-
-"""Step 3: Select the columns that you need"""
+**Step 3: Select the columns that you need**
 
 selected_features = ['Year', 'Kilometers_Driven',  'Transmission', 'Owner_Type', 'Engine', 'Power', 'Seats', 'Price']
 
 
 
-## Create a mapping dictionary to replace categorical values with numerical values
+**Create a mapping dictionary to replace categorical values with numerical values**
 Transmission = {'Manual': 0, 'Automatic': 1}
 
-# Replace the values in the 'Tranmission' column with the numerical representation
+**Replace the values in the 'Tranmission' column with the numerical representation**
 df['Transmission'] = df['Transmission'].replace(Transmission)
 
-## Create a mapping dictionary to replace categorical values with numerical values
+**Create a mapping dictionary to replace categorical values with numerical values**
 Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
 
-# Replace the values in the 'Tranmission' column with the numerical representation
+**Replace the values in the 'Tranmission' column with the numerical representation**
 df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
 
 #Create a dataframe with the selected columns
