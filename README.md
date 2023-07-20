@@ -53,42 +53,36 @@ Overall, the best model for predicting the car prices was the Random Forest mode
 
 
 ## Step 3: Select the columns that you need
-
-selected_features = ['Year', 'Kilometers_Driven',  'Transmission', 'Owner_Type', 'Engine', 'Power', 'Seats', 'Price']
-
-**Create a mapping dictionary to replace categorical values with numerical values**
-Transmission = {'Manual': 0, 'Automatic': 1}
-
-**Replace the values in the 'Tranmission' column with the numerical representation**
-
-df['Transmission'] = df['Transmission'].replace(Transmission)
+- selected_features = ['Year', 'Kilometers_Driven',  'Transmission', 'Owner_Type', 'Engine', 'Power', 'Seats', 'Price']
 
 **Create a mapping dictionary to replace categorical values with numerical values**
-
-Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
+- Transmission = {'Manual': 0, 'Automatic': 1}
 
 **Replace the values in the 'Tranmission' column with the numerical representation**
+- df['Transmission'] = df['Transmission'].replace(Transmission)
 
-df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
+**Create a mapping dictionary to replace categorical values with numerical values**
+- Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
+
+**Replace the values in the 'Tranmission' column with the numerical representation**
+- df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
 
 **Create a dataframe with the selected columns**
+- new_dataset = df[selected_features]
 
-new_dataset = df[selected_features]
+new_dataset 
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/6792b672-22e1-4c94-bc5c-9c29034521c9)
 
-new_dataset  
+## Preprocessing The Dataset 
+The codes in this section helps to perform data preprocessing operations on the dataset. These operations include removing null values, generating the mode of a column to fill the null values. 
 
-"""# **Preprocessing stage**
+[Preprocessing the Seats Column]: # 
 This code finds the mode of the 'Seats' Colum and then fill the missing values in the 'Seats' Column with the mode value
-"""
 
-import pandas as pd
-
-
-# Find the mode of the 'Seats' column
-mode_seats = new_dataset['Seats'].mode()[0]
-
-# Print the mode value
-print("Mode of 'Seats' column:", mode_seats)
+#### Find the mode of the 'Seats' column
+- mode_seats = new_dataset['Seats'].mode()[0]
+[Print the mode value]: #
+- print("Mode of 'Seats' column:", mode_seats)
 
 # Fill the missing values in 'Seats' column with the mode value
 new_dataset['Seats'].fillna(mode_seats, inplace=True)
