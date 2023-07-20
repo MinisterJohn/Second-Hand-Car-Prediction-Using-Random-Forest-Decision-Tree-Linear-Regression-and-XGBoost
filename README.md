@@ -118,18 +118,16 @@ This code finds the mode of the 'Power' Colum and then fill the missing values i
 - mode_power = new_dataset['Power'].mode()[0]
 
 [Print the mode value]:# 
--print("Mode of 'Power' column:", mode_power)
+- print("Mode of 'Power' column:", mode_power)
 
-# Fill the missing values in 'Seats' column with the mode value
-new_dataset['Power'].fillna(mode_power, inplace=True)
+[**Fill the missing values in 'Power' column with the mode value** ]:# 
+- new_dataset['Power'].fillna(mode_power, inplace=True)
 
-# Now, the missing values in the 'Seats' column have been replaced with the mode value.
+[ Verify that there are no more missing values in the 'Power' column]:#  
+- print("Null Values in the 'Power' Column After Filling:")
+- print(new_dataset['Power'].isnull().sum())
 
-# Verify that there are no more missing values in the 'Seats' column
-print("Null Values in the 'Power' Column After Filling:")
-print(new_dataset['Power'].isnull().sum())
 
-import pandas as pd
 
 # Remove 'CC' from the 'Engine' column
 new_dataset['Engine'] = df['Engine'].str.replace(' CC', '', regex=True)
