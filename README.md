@@ -58,18 +58,19 @@ Overall, the best model for predicting the car prices was the Random Forest mode
 [ Create a mapping dictionary to replace categorical values with numerical values]:#
 - Transmission = {'Manual': 0, 'Automatic': 1}
 
-**Replace the values in the 'Tranmission' column with the numerical representation**
+[Replace the values in the 'Tranmission' column with the numerical representation]: #
 - df['Transmission'] = df['Transmission'].replace(Transmission)
 
-**Create a mapping dictionary to replace categorical values with numerical values**
+[Create a mapping dictionary to replace categorical values with numerical values ]:#
 - Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
 
-**Replace the values in the 'Tranmission' column with the numerical representation**
+[Replace the values in the 'Tranmission' column with the numerical representation]:# 
 - df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
 
-**Create a dataframe with the selected columns**
+[ Create a dataframe with the selected columns]:# 
 - new_dataset = df[selected_features]
-
+  
+[To print the 'new_dataset']:#
 new_dataset 
 ![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/6792b672-22e1-4c94-bc5c-9c29034521c9)
 
@@ -79,25 +80,25 @@ The codes in this section helps to perform data preprocessing operations on the 
 [Preprocessing the Seats Column]: # 
 This code finds the mode of the 'Seats' Colum and then fill the missing values in the 'Seats' Column with the mode value
 
-#### Find the mode of the 'Seats' column
+[ Find the mode of the 'Seats' column]:# 
 - mode_seats = new_dataset['Seats'].mode()[0]
+  
 [Print the mode value]: #
 - print("Mode of 'Seats' column:", mode_seats)
 
-# Fill the missing values in 'Seats' column with the mode value
-new_dataset['Seats'].fillna(mode_seats, inplace=True)
+[Fill the missing values in 'Seats' column with the mode value ]:# 
+- new_dataset['Seats'].fillna(mode_seats, inplace=True)
 
-# Now, the missing values in the 'Seats' column have been replaced with the mode value.
+[** _Now, the missing values in the 'Seats' column have been replaced with the mode value._**]:# 
 
-# Verify that there are no more missing values in the 'Seats' column
+[Verify that there are no more missing values in the 'Seats' column ]:# 
 print("Null Values in the 'Seats' Column After Filling:")
 print(new_dataset['Seats'].isnull().sum())
 
-"""# **Preprocessing stage**
-This code remove 'bhp' from the 'Power' colum and then converts it to a numeric data type.
-"""
 
-import pandas as pd
+[Preprocesing the Power column]:#
+This code remove 'bhp' from the 'Power' colum and then converts it to a numeric data type.
+
 
 # Remove 'bhp' from the 'Power' column
 new_dataset['Power'] = df['Power'].str.replace(' bhp', '', regex=True)
