@@ -55,7 +55,7 @@ Overall, the best model for predicting the car prices was the Random Forest mode
 ## Step 3: Select the columns that you need
 - selected_features = ['Year', 'Kilometers_Driven',  'Transmission', 'Owner_Type', 'Engine', 'Power', 'Seats', 'Price']
 
-[ Create a mapping dictionary to replace categorical values with numerical values]#
+[ Create a mapping dictionary to replace categorical values with numerical values]:#
 - Transmission = {'Manual': 0, 'Automatic': 1}
 
 **Replace the values in the 'Tranmission' column with the numerical representation**
