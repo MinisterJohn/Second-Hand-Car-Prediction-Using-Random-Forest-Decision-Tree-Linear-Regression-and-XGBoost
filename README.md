@@ -74,7 +74,7 @@ Overall, the best model for predicting the car prices was the Random Forest mode
 new_dataset 
 ![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/6792b672-22e1-4c94-bc5c-9c29034521c9)
 
-## Preprocessing The Dataset 
+## Step 4:  Preprocessing The Dataset 
 The codes in this section helps to perform data preprocessing operations on the dataset. These operations include removing null values, generating the mode of a column to fill the null values. 
 
 [Preprocessing the Seats Column]: # 
@@ -128,121 +128,120 @@ This code finds the mode of the 'Power' Colum and then fill the missing values i
 - print(new_dataset['Power'].isnull().sum())
 
 
+[Remove 'CC' from the 'Engine' column ]:# 
+- new_dataset['Engine'] = df['Engine'].str.replace(' CC', '', regex=True)
 
-# Remove 'CC' from the 'Engine' column
-new_dataset['Engine'] = df['Engine'].str.replace(' CC', '', regex=True)
+[ Convert the 'Engine' column to numeric dtype (float or int) ]:# 
+- new_dataset['Engine'] = pd.to_numeric(new_dataset['Engine'], errors='coerce')
 
-# Now, the 'Engine' column contains numeric values without 'bhp'.
+[Verify the 'Engine' column after the transformation ]:# 
+- print(new_dataset['Engine'])
 
-# Convert the 'Engine' column to numeric dtype (float or int)
-new_dataset['Engine'] = pd.to_numeric(new_dataset['Engine'], errors='coerce')
-
-# 'coerce' argument will convert non-numeric values (e.g., NaN) to NaN.
-
-# Verify the 'Engine' column after the transformation
-print(new_dataset['Engine'])
-
-"""# **Preprocessing**
+[Removing null values from the Engine column and filling it with the mode ]:#
 The code bleow finds the mode of the Engine column, prints the mode value, and then fill the missing values
-"""
 
-import pandas as pd
+[Find the mode of the 'Engine' column ]:# 
+- mode_engine = new_dataset['Engine'].mode()[0]
+
+[Print the mode value ]:# 
+- print("Mode of 'Engine' column:", mode_engine)
+
+[Fill the missing values in 'Egine' column with the mode value ]:# 
+- new_dataset['Engine'].fillna(mode_engine, inplace=True)
 
 
-# Find the mode of the 'Engine' column
-mode_engine = new_dataset['Engine'].mode()[0]
+[Verify that there are no more missing values in the 'Engine' column ]:# 
+- print("Null Values in the 'Engine' Column After Filling:")
+- print(new_dataset['Engine'].isnull().sum())
 
-# Print the mode value
-print("Mode of 'Engine' column:", mode_engine)
-
-# Fill the missing values in 'Egine' column with the mode value
-new_dataset['Engine'].fillna(mode_engine, inplace=True)
-
-# Now, the missing values in the 'Engine' column have been replaced with the mode value.
-
-# Verify that there are no more missing values in the 'Seats' column
-print("Null Values in the 'Engine' Column After Filling:")
-print(new_dataset['Engine'].isnull().sum())
-
-#Check for null values in the entire DataFrame
-null_values = new_dataset.isnull().sum()
-
+[Check for null values in the entire DataFrame ]:# 
+- null_values = new_dataset.isnull().sum()
+  
+[ This code prints the null values]:#
 null_values
 
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/0e245313-5a7e-4337-b92e-f764fa2c3f3f)
+
+[ This code prints the new_dataset ]:#
 new_dataset
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/1138ac4d-e9af-4e34-92ba-cbf1b69f7777)
 
-# Split the dataset into features (X) and target variable (y)
-X = new_dataset.drop('Price', axis =1)
-y = new_dataset['Price']
-
+# Step 5: Split the dataset into features (X) and target variable (y)
+- X = new_dataset.drop('Price', axis =1)
+- y = new_dataset['Price']
+[This shows the feature variable]:#
 X
 
-# Split the dataset into training and testing sets
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/26dad0cf-c467-47da-8808-e5438129723b)
+
+# Step 6:  Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+- X_train: This is the feature matrix for the training data. It contains the input features (independent variables) that the model will - use to learn patterns and relationships. Each row represents a sample, and each column represents a different feature.
 
+- y_train: This is the target vector for the training data. It contains the corresponding labels or target values (dependent variable) for the training samples in X_train. The model learns to map the input features in X_train to the target values in y_train.
 
-X_train
+- X_test: This is the feature matrix for the test data. It contains a separate set of input features that the model has not seen during training. The purpose of the test set is to evaluate how well the model generalizes to new, unseen data.
 
-# Drop rows with missing values in X_train and y_train
-X_train.dropna(inplace=True)
-y_train = y_train[X_train.index]
+- y_test: This is the target vector for the test data. It contains the corresponding labels or target values for the test samples in X_test. 
 
-y_train
-
-from sklearn.impute import SimpleImputer
-
-# Create an imputer instance
-imputer = SimpleImputer(strategy='mean')
-
-# Fit and transform the imputer on X_train
-X_train_imputed = imputer.fit_transform(X_train)
-
-# Convert the imputed data back to a DataFrame
-X_train = pd.DataFrame(X_train_imputed, columns=X_train.columns)
-
-# Drop rows with missing values in X_test and y_test
-X_test.dropna(inplace=True)
-y_test = y_test[X_test.index]
-
-# Assuming X_test is a DataFrame containing the test features
-# Adjust the DataFrame name and column names accordingly
-
-X_test.drop('Mileage', axis=1, inplace=True)
-
-# Display the updated X_test DataFrame
-print(X_test)
+# Step 7: Preprocessing the X_train and y_train
+[Drop rows with missing values in X_train and y_train ]:# 
+- X_train.dropna(inplace=True)
+- y_train = y_train[X_train.index]
 
 from sklearn.impute import SimpleImputer
+[ Create an imputer instance]:# 
+- imputer = SimpleImputer(strategy='mean')
 
-# Create an imputer instance
-imputer = SimpleImputer(strategy='mean')
+[Fit and transform the imputer on X_train]:# 
+- X_train_imputed = imputer.fit_transform(X_train)
 
-# Fit and transform the imputer on X_train
-X_test_imputed = imputer.fit_transform(X_test)
+[Convert the imputed data back to a DataFrame ]:# 
+- X_train = pd.DataFrame(X_train_imputed, columns=X_train.columns)
 
-# Convert the imputed data back to a DataFrame
-X_test = pd.DataFrame(X_test_imputed, columns=X_test.columns)
+# Step 8: Preprocessing the X_test and y_test
+[ Drop rows with missing values in X_test and y_test]:# 
+- X_test.dropna(inplace=True)
+- y_test = y_test[X_test.index]
 
-# Scale the features using StandardScaler
-# Random Forest Regressor
-rf_model = RandomForestRegressor(random_state=42)
-rf_model.fit(X_train, y_train)
+[Assuming X_test is a DataFrame containing the test features ]:# 
+[Adjust the DataFrame name and column names accordingly ]:#
 
-X_test
+[Drop the Mileage column in the X_test]:# 
+- X_test.drop('Mileage', axis=1, inplace=True)
 
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import r2_score
-from sklearn.metrics import mean_squared_error
-# Step 7: Train and Evaluate the Random Forest Regressor
+[Display the updated X_test DataFrame ]:# 
+- print(X_test)
 
-rf_predictions = rf_model.predict(X_test)
-rf_mse = mean_squared_error(y_test, rf_predictions)
-print("Random Forest Mean Squared Error:", rf_mse)
+from sklearn.impute import SimpleImputer
+[ Create an imputer instance]:# 
+- imputer = SimpleImputer(strategy='mean')
 
-rf_predictions = rf_model.predict(X_test)
-rf_r2_score = r2_score(y_test, rf_predictions)
-print("Random Forest R2_score:", rf_r2_score)
+[Fit and transform the imputer on X_train ]:# 
+- X_test_imputed = imputer.fit_transform(X_test)
+
+[ Convert the imputed data back to a DataFrame]:# 
+- X_test = pd.DataFrame(X_test_imputed, columns=X_test.columns)
+
+# Step 9: Develop the Random Forest model 
+[Random Forest Regressor]:# 
+- from sklearn.ensemble import RandomForestRegressor
+- from sklearn.metrics import r2_score
+- from sklearn.metrics import mean_squared_error
+  [Create the model ]:#
+- rf_model = RandomForestRegressor(random_state=42)
+- rf_model.fit(X_train, y_train)
+
+[Train and Evaluate the Random Forest Regressor]:# 
+- rf_predictions = rf_model.predict(X_test)
+- rf_mse = mean_squared_error(y_test, rf_predictions)
+- print("Random Forest Mean Squared Error:", rf_mse)
+- rf_r2_score = r2_score(y_test, rf_predictions)
+- print("Random Forest R2_score:", rf_r2_score)
+
+  ![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/1fad4272-0a84-4558-b418-d818e1ef1d95)
+
 
 import pickle
 
