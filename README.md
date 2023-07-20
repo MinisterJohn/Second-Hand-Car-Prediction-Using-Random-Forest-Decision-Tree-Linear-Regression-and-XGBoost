@@ -364,6 +364,13 @@ Go to your type section and then type cmd. This will open the command prompt
 
 ## Step 3: Run the server using the command on the picture below
 
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/a858becf-7e3e-4977-8a61-63698e4f397d)
+
+# Step 4: Copy the link below and paste it on your web browser. It will show the image below
+
+
+Run the  server at:  http://127.0.0.1:8000/
+
 ![Uploading image.png…]()
 
 
