@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Prediction</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Price Prediction</h1>
+        <form action="{% url 'result' %}">
+            {% csrf_token %}
+            <label for="year">Year of Manufacture:</label>
+            <input type="number" name="year" id="year" required>
+
+            <label for="kilometers">Kilometers Driven:</label>
+            <input type="number" name="kilometers" id="kilometers" required>
+
+            <label for="engine">Engine (CC):</label>
+            <input type="number" name="engine" id="engine" required>
+
+            <label for="engine">Power (bhp):</label>
+            <input type="number" name="power" id="power" required>
+
+            <label for="seats">Number of Seats:</label>
+            <input type="number" name="seats" id="seats" required>
+
+            <label for="transmission">Transmission:</label>
+            <input type="number" name="transmission" id="transmission" required>
+
+
+            <label for="owner_type">Owner Type:</label>
+            <input type="number" name="owner_type" id="owner_type" required>
+
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
