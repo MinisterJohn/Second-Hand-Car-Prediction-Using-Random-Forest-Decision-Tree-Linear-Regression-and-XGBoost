@@ -243,69 +243,62 @@ from sklearn.impute import SimpleImputer
   ![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/1fad4272-0a84-4558-b418-d818e1ef1d95)
 
 
-import pickle
+
+
+[Save the model as a pickle file in the Colab environment]:# 
+- import pickle
+- file_path = "/content/Random_Forest_Model"  # Specify a path in Colab environment
+- with open(file_path, "wb") as file:
+    - pickle.dump(rf_model, file)
+
+- from google.colab import files
+
+[Download the pickled model from Colab to your local machine]:# 
+- files.download(file_path)
+
+
+# Step 10: Create a Decision Tree Regressor
+- from sklearn.tree import DecisionTreeRegressor
+- decision_tree = DecisionTreeRegressor()
+  
+## Train the model
+- decision_tree.fit(X_train, y_train)
+
+## Make predictions on the test data
+- dt_predictions = decision_tree.predict(X_test)
+- dt_mse = mean_squared_error(y_test, dt_predictions)
+- print("Decision Tree Mean Squared Error: ", dt_mse)
+- dt_r2score = r2_score(y_test, dt_predictions)
+- print("Decision Tree R2 Score: ", dt_r2score)
 
 
 
-# Save the model as a pickle file in the Colab environment
-file_path = "/content/Random_Forest_Model"  # Specify a path in Colab environment
-with open(file_path, "wb") as file:
-    pickle.dump(rf_model, file)
-
-from google.colab import files
-
-# Download the pickled model from Colab to your local machine
-files.download(file_path)
-
-
-
-from sklearn.tree import DecisionTreeRegressor
-
-# Create a Decision Tree Regressor
-decision_tree = DecisionTreeRegressor()
-
-# Train the model
-decision_tree.fit(X_train, y_train)
-
-# Make predictions on the test data
-dt_predictions = decision_tree.predict(X_test)
-dt_mse = mean_squared_error(y_test, dt_predictions)
-print("Decision Tree Mean Squared Error: ", dt_mse)
-dt_r2score = r2_score(y_test, dt_predictions)
-print("Decision Tree R2 Score: ", dt_r2score)
-
+# Step 11:  Create a Linear Regression model
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import StandardScaler
-
-# Scale the features using StandardScaler
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
-# Create a Linear Regression model
 linear_regression = LinearRegression()
 
-# Train the model
-linear_regression.fit(X_train_scaled, y_train)
+## Train the model
+- linear_regression.fit(X_train_scaled, y_train)
 
-# Make predictions on the scaled test data
-linear_predictions = linear_regression.predict(X_test_scaled)
-lr_mse = mean_squared_error(y_test, linear_predictions)
-print("Linear Regression Mean Squared Error: ", lr_mse)
-lr_r2score = r2_score(y_test, linear_predictions)
-print("Linear Regression R2 Score: ", lr_r2score)
+## Make predictions on the scaled test data
+- linear_predictions = linear_regression.predict(X_test_scaled)
+- lr_mse = mean_squared_error(y_test, linear_predictions)
+- print("Linear Regression Mean Squared Error: ", lr_mse)
+- lr_r2score = r2_score(y_test, linear_predictions)
+- print("Linear Regression R2 Score: ", lr_r2score)
 
-!pip install xgboost
+# Step 12: Developing the XGBoost model
+[ Install the xgboost package]:# 
+- !pip install xgboost
+- import xgboost as xgb
+- from sklearn.metrics import mean_squared_error
 
-import xgboost as xgb
-from sklearn.metrics import mean_squared_error
-
-# Create a DMatrix for the training and test data
+## Create a DMatrix for the training and test data
 dtrain = xgb.DMatrix(X_train, label=y_train)
 dtest = xgb.DMatrix(X_test)
 
-# Define the XGBoost parameters
-params = {
+##  Define the XGBoost parameters
+- params = {
     'objective': 'reg:squarederror',
     'eval_metric': 'rmse',
     'max_depth': 6,
@@ -316,43 +309,44 @@ params = {
     'seed': 42
 }
 
-# Create the XGBoost model
-xgb_model = xgb.train(params, dtrain)
+## Create the XGBoost model
+- xgb_model = xgb.train(params, dtrain)
 
-# Make predictions on the test data
+## Make predictions on the test data
 xgb_predictions = xgb_model.predict(dtest)
-# Calculate the mean squared error (MSE)
-mse = mean_squared_error(y_test, xgb_predictions)
-print(f"Mean Squared Error: {mse}")
 
-r2score = r2_score(y_test, xgb_predictions)
-print(f"R2 Score: {r2score}")
+## Calculate the mean squared error (MSE) and the R2 Score
+- mse = mean_squared_error(y_test, xgb_predictions)
+- print(f"Mean Squared Error: {mse}")
+- r2score = r2_score(y_test, xgb_predictions)
+- print(f"R2 Score: {r2score}")
 
-import matplotlib.pyplot as plt
+## Plot the graph to compare the models
+- import matplotlib.pyplot as plt
+- r2_scores = [0.863, 0.732, 0.563, 0.641]
+- algorithms = ['Random Forest', 'Decision Tree', 'Linear Regression', 'XGBoost']
+- plt.bar(algorithms, r2_scores)
+- plt.xlabel('Algorithm')
+- plt.ylabel('R2 Score')
+- plt.title('R2 Score Comparison of Different Algorithms')
+- plt.ylim(0, 1)  # Set the y-axis limits from 0 to 1
+- plt.show()
 
-r2_scores = [0.863, 0.732, 0.563, 0.641]
-algorithms = ['Random Forest', 'Decision Tree', 'Linear Regression', 'XGBoost']
 
-plt.bar(algorithms, r2_scores)
-plt.xlabel('Algorithm')
-plt.ylabel('R2 Score')
-plt.title('R2 Score Comparison of Different Algorithms')
-plt.ylim(0, 1)  # Set the y-axis limits from 0 to 1
-plt.show()
-
+## Saving and Downloading the Pickled model
 import pickle
 
-# Step 1: Load the model from the file
-# For example, if you have a scikit-learn model saved in a file called 'model_file.pkl':
-with open('/content/Random_Forest_Model', 'rb') as file:
-    loaded_model = pickle.load(file)
+[Step 1: Load the model from the file]:# 
+- For example, if you have a scikit-learn model saved in a file called 'model_file.pkl':
+- with open('/content/Random_Forest_Model', 'rb') as file:
+    - loaded_model = pickle.load(file)
 
-# Step 2: Serialize the model into a pickled file
-# For example, to save the loaded model into a new pickled file called 'pickled_model.pkl':
-with open('pickled_model.pkl', 'wb') as file:
-    pickle.dump(loaded_model, file)
+[Step 2: Serialize the model into a pickled file]:#
+- For example, to save the loaded model into a new pickled file called 'pickled_model.pkl':
+- with open('pickled_model.pkl', 'wb') as file:
+    - pickle.dump(loaded_model, file)
 
-from google.colab import files
+- from google.colab import files
 
-# Download the pickled file to your local machine
-files.download('pickled_model.pkl')
+## Download the pickled file to your local machine
+- files.download('pickled_model.pkl')
