@@ -371,6 +371,13 @@ Go to your type section and then type cmd. This will open the command prompt
 
 Run the  server at:  http://127.0.0.1:8000/
 
-![Uploading image.png…]()
+# Step 5: Predicting the price of a car
+Input the variables in order to predict the price of the car. Kindly look at the dataset in order to see the correct data. Below is an image showing the values of the variables to predict the price of a second hand car. Note: The owner type (include: first, second, third, fourth and others, in this scenario kindly input 0 - for first, 1- for second, 2- for third, 3- for fourth & others). Also for Transmission (manual or automatic): 0 - is for manaul, 1- is for automatic 
+
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/8855f1e7-7d8c-4cc3-9271-cac5ecd134de)
+
+The image below shows the prediction page 
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/01e1a853-73f3-4005-8644-44bb0010eff8)
+
 
 
