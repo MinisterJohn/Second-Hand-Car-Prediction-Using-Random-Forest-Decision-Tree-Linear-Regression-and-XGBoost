@@ -92,8 +92,8 @@ This code finds the mode of the 'Seats' Colum and then fill the missing values i
 [** _Now, the missing values in the 'Seats' column have been replaced with the mode value._**]:# 
 
 [Verify that there are no more missing values in the 'Seats' column ]:# 
-print("Null Values in the 'Seats' Column After Filling:")
-print(new_dataset['Seats'].isnull().sum())
+- print("Null Values in the 'Seats' Column After Filling:")
+- print(new_dataset['Seats'].isnull().sum())
 
 
 [Preprocesing the Power column]:#
