@@ -96,35 +96,29 @@ This code finds the mode of the 'Seats' Colum and then fill the missing values i
 - print(new_dataset['Seats'].isnull().sum())
 
 
-[Preprocesing the Power column]:#
+[**Preprocesing the Power column**]:#
 This code remove 'bhp' from the 'Power' colum and then converts it to a numeric data type.
 
 
-# Remove 'bhp' from the 'Power' column
-new_dataset['Power'] = df['Power'].str.replace(' bhp', '', regex=True)
+[ **Remove 'bhp' from the 'Power' column** ]:# 
+- new_dataset['Power'] = df['Power'].str.replace(' bhp', '', regex=True)
 
-# Now, the 'Power' column contains numeric values without 'bhp'.
+[ **Convert the 'Power' column to numeric dtype (float or int)**]: # 
+- new_dataset['Power'] = pd.to_numeric(new_dataset['Power'], errors='coerce')
 
-# Convert the 'Power' column to numeric dtype (float or int)
-new_dataset['Power'] = pd.to_numeric(new_dataset['Power'], errors='coerce')
+[_'coerce' argument will convert non-numeric values (e.g., NaN) to NaN._ ]:# 
 
-# 'coerce' argument will convert non-numeric values (e.g., NaN) to NaN.
+[**Verify the 'Power' column after the transformation**]:# 
+- print(new_dataset['Power'])
 
-# Verify the 'Power' column after the transformation
-print(new_dataset['Power'])
-
-"""# **Preprocessing stage**
+[ **Removing missing values from the Power column**]:#
 This code finds the mode of the 'Power' Colum and then fill the missing values in the 'Power' Column with the mode value
-"""
 
-import pandas as pd
+[**Find the mode of the 'Seats' column**]:# 
+- mode_power = new_dataset['Power'].mode()[0]
 
-
-# Find the mode of the 'Seats' column
-mode_power = new_dataset['Power'].mode()[0]
-
-# Print the mode value
-print("Mode of 'Power' column:", mode_power)
+[Print the mode value]:# 
+-print("Mode of 'Power' column:", mode_power)
 
 # Fill the missing values in 'Seats' column with the mode value
 new_dataset['Power'].fillna(mode_power, inplace=True)
