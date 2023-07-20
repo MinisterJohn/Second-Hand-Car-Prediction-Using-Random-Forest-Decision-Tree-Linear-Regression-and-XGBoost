@@ -1,52 +1,81 @@
 
-"""Second Hand car price prediction using Random Forest, Decision Tree, Linear Regression, XGBoost  Model.ipynb
+# Second-Hand Cars' Price Prediction Using Random Forest, Decision Tree, Linear Regression and XGBoost
+
+## Project Objectives
+This project aims to predict the prices of second-hand cars in Nigeria using machine learning techniques. The project will involve building and evaluating different regression models, including linear regression, decision tree regression, and random forest regression, Xgboost. The models will be trained on a dataset containing information about the year of manufacture, kilometers driven, seats, and other relevant features of a large number of second-hand cars sold. The project objective is to achieve high accuracy in predicting the prices of second-hand cars based on these features, which can help buyers and sellers make more informed decisions and improve overall market efficiency in Nigeria.
+
+## Project Structure
+- `CarPriceApp/` - Holds the contents of the Django app .
+- `SecondHandCarPrice/` - Holds the contents of the Django folder.
+- `README.md/` - Holds the steps taken to develop the model
+- `Requirements.txt/` - Holds contents of the required libraries.
+- `db.sqlite` - Holds Django database.
+- `image.png` - Holds an image of the dataset.
+- `manage.py` - Holds files that interface with the prediction functions.
+- `train-data.csv` - Holds the training dataset
+
+## Generating model artifacts
+To run the notebook, you need to have Visual Studio Code or Jupyter Notebook installed on your computer. On Visual Studio Code, use the `Jupyter` extension from Marketplace to power up a kernel.
+
+### Installing dependencies
+The following packages are required to run the notebook:
+
+- pandas
+- numpy
+- matplotlib
+- sklearn
+- keras
+- seaborn
+
+## Collecting metrics
+The performance of each model was evaluated using the Mean Square Error and R2 Score metric. The higher R2 Score, the better the model's performance.
+
+## Conclusion
+Overall, the best model for predicting the car prices was the Random Forest model, with a R2 score of 86.3%. The Decision Tree model had a R2 score of 73.2%,  The linear regression had a R2 score of 56.3%, while the XGBoost model had an R2 score of 64.15%
 
 
+# How the Models were developed
 
-Original file is located at
-    https://colab.research.google.com/drive/143O1wwGBTCErjzlsx86dlqiKLD3vxoE_
+## Step 1: Import the necessary libraries
+- import pandas as pd
+-  numpy as np
+- from sklearn.model_selection import train_test_split
+- from sklearn.ensemble import RandomForestRegressor
+- from sklearn.metrics import mean_squared_error
+- from sklearn.preprocessing import StandardScaler
 
-Step 1: Import the necessary libraries
-"""
+## Step 2: Load and preprocess the dataset 
+- df = pd.read_csv("/content/train-data.csv")
 
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import StandardScaler
-
-"""Step 2: Load and preprocess the dataset"""
-
-df = pd.read_csv("/content/train-data.csv")
-
-df.head()
+- df.head()
 
 ![Alt text](image.png)
 
 
-"""Step 3: Select the columns that you need"""
+## Step 3: Select the columns that you need
 
 selected_features = ['Year', 'Kilometers_Driven',  'Transmission', 'Owner_Type', 'Engine', 'Power', 'Seats', 'Price']
 
-
-
-## Create a mapping dictionary to replace categorical values with numerical values
+**Create a mapping dictionary to replace categorical values with numerical values**
 Transmission = {'Manual': 0, 'Automatic': 1}
 
-# Replace the values in the 'Tranmission' column with the numerical representation
+**Replace the values in the 'Tranmission' column with the numerical representation**
+
 df['Transmission'] = df['Transmission'].replace(Transmission)
 
-## Create a mapping dictionary to replace categorical values with numerical values
+**Create a mapping dictionary to replace categorical values with numerical values**
+
 Owner_Type = {'First': 0, 'Second': 1, 'Third': 2, 'Fourth & Above': 3}
 
-# Replace the values in the 'Tranmission' column with the numerical representation
+**Replace the values in the 'Tranmission' column with the numerical representation**
+
 df['Owner_Type'] = df['Owner_Type'].replace(Owner_Type)
 
-#Create a dataframe with the selected columns
+**Create a dataframe with the selected columns**
+
 new_dataset = df[selected_features]
 
-new_dataset
+new_dataset  
 
 """# **Preprocessing stage**
 This code finds the mode of the 'Seats' Colum and then fill the missing values in the 'Seats' Column with the mode value
