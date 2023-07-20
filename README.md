@@ -331,6 +331,8 @@ xgb_predictions = xgb_model.predict(dtest)
 - plt.title('R2 Score Comparison of Different Algorithms')
 - plt.ylim(0, 1)  # Set the y-axis limits from 0 to 1
 - plt.show()
+  
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/0aed1789-82b1-425c-803b-7dc5bbd1c812)
 
 
 ## Saving and Downloading the Pickled model
@@ -350,3 +352,18 @@ import pickle
 
 ## Download the pickled file to your local machine
 - files.download('pickled_model.pkl')
+
+# How to View the Deployed model using Django
+## Step 1: Open your command prompt
+Go to your type section and then type cmd. This will open the command prompt
+
+## Step 2: Navigate to the path where your folder is
+
+![image](https://github.com/watchmanfuto/Second-Hand-Car-Prediction-Using-Random-Forest-Decision-Tree-Linear-Regression-and-XGBoost/assets/94996679/66435969-2dec-40ac-a6c9-7c884e0561f2)
+
+
+## Step 3: Run the server using the command on the picture below
+
+![Uploading image.png…]()
+
+
