@@ -1,0 +1,8 @@
+numpy
+pandas
+django==recent version
+sklearn
+matplotlib
+seaborn
+pickle
+xgboost==0.9.0
