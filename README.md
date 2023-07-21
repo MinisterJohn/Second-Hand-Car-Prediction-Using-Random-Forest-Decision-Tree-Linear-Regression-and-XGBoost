@@ -354,6 +354,10 @@ import pickle
 - files.download('pickled_model.pkl')
 
 # How to View the Deployed model using Django
+### NB: Use the link below to dowlnoad the pickled model which will be deployed for the training. I had to put it on google drive because the file size is large and it cannot be uploaded on github. After downloading the model and the folders from the github, open the "SecodnHandCarPrice" folder and then place the model inside. 
+
+https://drive.google.com/file/d/1rjBdWK3SOrt9lqoM7ti7WxLb3wXlpgo1/view?usp=sharing
+
 ## Step 1: Open your command prompt
 Go to your type section and then type cmd. This will open the command prompt
 
